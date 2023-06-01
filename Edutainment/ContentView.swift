@@ -37,7 +37,6 @@ struct ContentView: View {
         VStack {
             if questionCount == 0 {
                 Stepper("Multiplication tables up to __\(difficulty)__", value: $difficulty, in: 2...12, step: 1)
-
                 VStack(alignment: .leading) {
                     Text("Number of questions")
                     Picker("Number of questions", selection: $numberOfQuestions) {
@@ -68,6 +67,7 @@ struct ContentView: View {
                         .foregroundColor(.secondary)
                         .font(.title)
                         .bold()
+                        .animation(.default, value: questionCount)
                 }
             }
 
@@ -83,7 +83,8 @@ struct ContentView: View {
                 .padding(.vertical, 20)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-
+                .animation(.default, value: questionCount)
+                
                 Text("Answer")
                 TextField("Type your answer here", value: $answer, format: .number)
                     .keyboardType(.numberPad)
@@ -130,6 +131,7 @@ struct ContentView: View {
             }
         }
         .padding()
+        
     }
 
     func checkAnswer() {
